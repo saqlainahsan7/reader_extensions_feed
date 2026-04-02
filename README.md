@@ -1,0 +1,20 @@
+# Device Feed
+
+This repository hosts generated feeds for private device use.
+
+## URLs
+
+### Tachiyomi-family
+
+```text
+https://raw.githubusercontent.com/<username>/<repo>/main/tachiyomi/index.min.json
+```
+
+### LNReader
+
+```text
+https://raw.githubusercontent.com/<username>/<repo>/main/lnreader/.dist/plugins.min.json
+```
+
+Only generated artifacts should be committed here.
+
