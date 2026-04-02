@@ -19,7 +19,7 @@ https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnre
 ### TachiyomiSY APK
 
 ```text
-https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-standard-universal-release.apk
+https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk
 ```
 
 Only generated artifacts should be committed here.
