@@ -1,7 +1,7 @@
 {
   "versionCode": 81,
   "versionName": "1.12.0",
-  "info": "TachiyomiSY Custom private build with storage/SAF download diagnostics, NHentai preview parsing updates, feed-based update checks, and log save/share actions.",
+  "info": "TachiyomiSY Custom private build with fixes and custom feed updates.",
   "releaseLink": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/tachiyomisy",
   "downloadLink": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk"
 }
