@@ -1,0 +1,7 @@
+{
+  "versionCode": 80,
+  "versionName": "1.12.0",
+  "info": "TachiyomiSY Custom private build with feed-based update checks, log save/share actions, and storage permission fixes.",
+  "releaseLink": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/tachiyomisy",
+  "downloadLink": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk"
+}
