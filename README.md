@@ -16,10 +16,4 @@ https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tach
 https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.dist/plugins.min.json
 ```
 
-### TachiyomiSY APK
-
-```text
-https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk
-```
-
 Only generated artifacts should be committed here.
