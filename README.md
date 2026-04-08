@@ -2,7 +2,12 @@
 
 This repository hosts generated feeds for private device use.
 
-## URLs
+## Extension Repositories
+
+- Tachiyomi extensions: https://github.com/saqlainahsan7/story_reader_extensions
+- LNReader plugins: https://github.com/saqlainahsan7/story_reader_lnreader_plugins
+
+## Build URLs
 
 ### Tachiyomi-family
 

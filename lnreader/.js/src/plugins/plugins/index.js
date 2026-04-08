@@ -22,8 +22,8 @@ var linovelib_1 = __importDefault(require("@plugins/chinese/linovelib"));
 var linovelib_tw_1 = __importDefault(require("@plugins/chinese/linovelib_tw"));
 var novel543_1 = __importDefault(require("@plugins/chinese/novel543"));
 var Quanben_1 = __importDefault(require("@plugins/chinese/Quanben"));
-var AllNovelFull_readnovelfull_1 = __importDefault(require("@plugins/english/AllNovelFull[readnovelfull]"));
 var AllNovel_readnovelfull_1 = __importDefault(require("@plugins/english/AllNovel[readnovelfull]"));
+var AllNovelFull_readnovelfull_1 = __importDefault(require("@plugins/english/AllNovelFull[readnovelfull]"));
 var ao3_1 = __importDefault(require("@plugins/english/ao3"));
 var ArcaneTranslations_lightnovelwp_1 = __importDefault(require("@plugins/english/ArcaneTranslations[lightnovelwp]"));
 var BelleReservoir_madara_1 = __importDefault(require("@plugins/english/BelleReservoir[madara]"));
@@ -42,6 +42,7 @@ var Dragonholic_madara_1 = __importDefault(require("@plugins/english/Dragonholic
 var DragonTea_madara_1 = __importDefault(require("@plugins/english/DragonTea[madara]"));
 var dreambigtl_1 = __importDefault(require("@plugins/english/dreambigtl"));
 var DuskBlossoms_madara_1 = __importDefault(require("@plugins/english/DuskBlossoms[madara]"));
+var easternwordsmith_1 = __importDefault(require("@plugins/english/easternwordsmith"));
 var ElloTL_lightnovelwp_1 = __importDefault(require("@plugins/english/ElloTL[lightnovelwp]"));
 var Eternalune_madara_1 = __importDefault(require("@plugins/english/Eternalune[madara]"));
 var EtudeTranslations_madara_1 = __importDefault(require("@plugins/english/EtudeTranslations[madara]"));
@@ -472,5 +473,6 @@ var PLUGINS = [
     lightnovelvn_1.default,
     LNHako_1.default,
     nettruyen_1.default,
+    easternwordsmith_1.default,
 ];
 exports.default = PLUGINS;

@@ -378,6 +378,15 @@
 		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/multisrc/madara/duskblossoms/icon.png"
 	},
 	{
+		"id": "easternwordsmith",
+		"name": "Eastern Word Smith",
+		"site": "https://easternwordsmith.com/",
+		"lang": "English",
+		"version": "1.0.0",
+		"url": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.js/src/plugins/english/easternwordsmith.js",
+		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/src/en/easternwordsmith/icon.png"
+	},
+	{
 		"id": "ellotl",
 		"name": "ElloTL",
 		"site": "https://ellotl.com/",
@@ -851,7 +860,7 @@
 		"name": "Novel Fire",
 		"site": "https://novelfire.net/",
 		"lang": "English",
-		"version": "1.1.8",
+		"version": "1.2.0",
 		"url": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.js/src/plugins/english/novelfire.js",
 		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/src/en/novelfire/icon.png"
 	},
