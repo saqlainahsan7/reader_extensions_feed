@@ -23,10 +23,10 @@ https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnre
 
 ## APK Artifacts
 
-### LNReader APK (Upstream)
+### LN Reader Custom APK
 
 ```text
-https://github.com/lnreader/lnreader/releases/latest
+https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk
 ```
 
 ### TachiyomiSY Custom APK
@@ -41,6 +41,12 @@ https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tach
 
 ```text
 https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/update.json
+```
+
+### LN Reader Custom Update Manifest
+
+```text
+https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/update.json
 ```
 
 ### Tachiyomi Extensions APK Directory
