@@ -1,8 +1,8 @@
-{
-  "version": "2.0.3",
-  "versionCode": 4194307,
-  "changelog": "LN Reader Custom private build with custom updater and feed integration.",
-  "downloadUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk",
-  "releaseUrl": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/lnreadercustom",
-  "publishedAt": "2026-04-08T22:02:40.0598899Z"
+﻿{
+    "version":  "2.0.4",
+    "versionCode":  4194308,
+    "changelog":  "LN Reader Custom private build with custom updater.",
+    "downloadUrl":  "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk",
+    "releaseUrl":  "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/lnreadercustom",
+    "publishedAt":  "2026-04-09T10:25:12.2592355Z"
 }
