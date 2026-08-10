@@ -445,7 +445,7 @@
 		"name": "Eastern Word Smith",
 		"site": "https://easternwordsmith.com/",
 		"lang": "English",
-		"version": "1.0.1",
+		"version": "1.0.2",
 		"url": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.js/src/plugins/english/easternwordsmith.js",
 		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/src/en/easternwordsmith/icon.png"
 	},
@@ -986,7 +986,7 @@
 		"name": "Novel Fire",
 		"site": "https://novelfire.net/",
 		"lang": "English",
-		"version": "1.3.1",
+		"version": "1.3.3",
 		"url": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.js/src/plugins/english/novelfire.js",
 		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/src/en/novelfire/icon.png"
 	},
@@ -1067,7 +1067,7 @@
 		"name": "Novel Phoenix",
 		"site": "https://novelphoenix.com/",
 		"lang": "English",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"url": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/.js/src/plugins/english/NovelPhoenix[novelfire].js",
 		"iconUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreader/public/static/multisrc/novelfire/novelphoenix/icon.png"
 	},
