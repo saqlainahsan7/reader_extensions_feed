@@ -1,8 +1,8 @@
 {
   "version": "2.1.2",
-  "versionCode": 4196357,
-  "changelog": "Chapter status banner now only appears on error, so the novel screen no longer looks like it is constantly refreshing.",
+  "versionCode": 4196358,
+  "changelog": "Fixed a crash when opening the Updates tab.",
   "downloadUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk",
   "releaseUrl": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/lnreadercustom",
-  "publishedAt": "2026-08-12T02:38:39.8548508Z"
+  "publishedAt": "2026-08-19T01:40:35.7938202Z"
 }
