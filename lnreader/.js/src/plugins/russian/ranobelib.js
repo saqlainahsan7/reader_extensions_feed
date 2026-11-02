@@ -1,1 +1,652 @@
-var e=this&&this.__assign||function(){return e=Object.assign||function(e){for(var l,a=1,t=arguments.length;a<t;a++)for(var n in l=arguments[a])Object.prototype.hasOwnProperty.call(l,n)&&(e[n]=l[n]);return e},e.apply(this,arguments)},l=this&&this.__awaiter||function(e,l,a,t){return new(a||(a=Promise))((function(n,u){function r(e){try{o(t.next(e))}catch(e){u(e)}}function i(e){try{o(t.throw(e))}catch(e){u(e)}}function o(e){var l;e.done?n(e.value):(l=e.value,l instanceof a?l:new a((function(e){e(l)}))).then(r,i)}o((t=t.apply(e,l||[])).next())}))},a=this&&this.__generator||function(e,l){var a,t,n,u={label:0,sent:function(){if(1&n[0])throw n[1];return n[1]},trys:[],ops:[]},r=Object.create(("function"==typeof Iterator?Iterator:Object).prototype);return r.next=i(0),r.throw=i(1),r.return=i(2),"function"==typeof Symbol&&(r[Symbol.iterator]=function(){return this}),r;function i(i){return function(o){return function(i){if(a)throw new TypeError("Generator is already executing.");for(;r&&(r=0,i[0]&&(u=0)),u;)try{if(a=1,t&&(n=2&i[0]?t.return:i[0]?t.throw||((n=t.return)&&n.call(t),0):t.next)&&!(n=n.call(t,i[1])).done)return n;switch(t=0,n&&(i=[2&i[0],n.value]),i[0]){case 0:case 1:n=i;break;case 4:return u.label++,{value:i[1],done:!1};case 5:u.label++,t=i[1],i=[0];continue;case 7:i=u.ops.pop(),u.trys.pop();continue;default:if(!(n=u.trys,(n=n.length>0&&n[n.length-1])||6!==i[0]&&2!==i[0])){u=0;continue}if(3===i[0]&&(!n||i[1]>n[0]&&i[1]<n[3])){u.label=i[1];break}if(6===i[0]&&u.label<n[1]){u.label=n[1],n=i;break}if(n&&u.label<n[2]){u.label=n[2],u.ops.push(i);break}n[2]&&u.ops.pop(),u.trys.pop();continue}i=l.call(e,u)}catch(e){i=[6,e],t=0}finally{a=n=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,o])}}},t=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var n=require("@libs/filterInputs"),u=require("@libs/defaultCover"),r=require("@libs/fetch"),i=require("@libs/novelStatus"),o=require("@libs/storage"),s=t(require("dayjs")),v={1:i.NovelStatus.Ongoing,2:i.NovelStatus.Completed,3:i.NovelStatus.OnHiatus,4:i.NovelStatus.Cancelled},c={Accept:"application/json",Referer:"https://ranobelib.me",Origin:"https://ranobelib.me/","Site-Id":"3","client-time-zone":Intl.DateTimeFormat().resolvedOptions().timeZone||"Europe/Moscow","User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 YaBrowser/25.12.0.0 Safari/537.36"},b=function(){function t(){var l=this;this.id="RLIB",this.name="RanobeLib",this.site="https://ranobelib.me",this.apiSite="https://api.cdnlibs.org/api/manga/",this.version="2.2.4",this.icon="src/ru/ranobelib/icon.png",this.webStorageUtilized=!0,this.imageRequestInit={headers:e(e({},c),{Accept:"image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"})},this.resolveUrl=function(e,a){var t,n=(null===(t=l.user)||void 0===t?void 0:t.ui)?"ui="+l.user.ui:"";if(a)return l.site+"/ru/book/"+e+(n?"?"+n:"");var u=e.split("/"),r=u[0],i=u[1],o=u[2],s=u[3],v=r+"/read/v"+i+"/c"+o+(s?"?bid="+s:"");return l.site+"/ru/"+v+(n?(s?"&":"?")+n:"")},this.getUser=function(){var e,l,a=o.storage.get("user");if(a)return{token:{Authorization:"Bearer "+a.token},ui:a.id};var t=null===(e=o.localStorage.get())||void 0===e?void 0:e.auth;if(!t)return{};var n=JSON.parse(t);return(null===(l=null==n?void 0:n.token)||void 0===l?void 0:l.access_token)?(o.storage.set("user",{id:n.auth.id,token:n.token.access_token},n.token.timestamp+n.token.expires_in),{token:{Authorization:"Bearer "+n.token.access_token},ui:n.auth.id}):void 0},this.user=this.getUser(),this.filters={sort_by:{label:"Сортировка",value:"rating_score",options:[{label:"По рейтингу",value:"rate_avg"},{label:"По популярности",value:"rating_score"},{label:"По просмотрам",value:"views"},{label:"Количеству глав",value:"chap_count"},{label:"Дате обновления",value:"last_chapter_at"},{label:"Дате добавления",value:"created_at"},{label:"По названию (A-Z)",value:"name"},{label:"По названию (А-Я)",value:"rus_name"}],type:n.FilterTypes.Picker},sort_type:{label:"Порядок",value:"desc",options:[{label:"По убыванию",value:"desc"},{label:"По возрастанию",value:"asc"}],type:n.FilterTypes.Picker},types:{label:"Тип",value:[],options:[{label:"Япония",value:"10"},{label:"Корея",value:"11"},{label:"Китай",value:"12"},{label:"Английский",value:"13"},{label:"Авторский",value:"14"},{label:"Фанфик",value:"15"}],type:n.FilterTypes.CheckboxGroup},scanlateStatus:{label:"Статус перевода",value:[],options:[{label:"Продолжается",value:"1"},{label:"Завершен",value:"2"},{label:"Заморожен",value:"3"},{label:"Заброшен",value:"4"}],type:n.FilterTypes.CheckboxGroup},manga_status:{label:"Статус тайтла",value:[],options:[{label:"Онгоинг",value:"1"},{label:"Завершён",value:"2"},{label:"Анонс",value:"3"},{label:"Приостановлен",value:"4"},{label:"Выпуск прекращён",value:"5"}],type:n.FilterTypes.CheckboxGroup},genres:{label:"Жанры",value:{include:[],exclude:[]},options:[{label:"Арт",value:"32"},{label:"Безумие",value:"91"},{label:"Боевик",value:"34"},{label:"Боевые искусства",value:"35"},{label:"Вампиры",value:"36"},{label:"Военное",value:"89"},{label:"Гарем",value:"37"},{label:"Гендерная интрига",value:"38"},{label:"Героическое фэнтези",value:"39"},{label:"Демоны",value:"81"},{label:"Детектив",value:"40"},{label:"Детское",value:"88"},{label:"Дзёсэй",value:"41"},{label:"Драма",value:"43"},{label:"Игра",value:"44"},{label:"Исекай",value:"79"},{label:"История",value:"45"},{label:"Киберпанк",value:"46"},{label:"Кодомо",value:"76"},{label:"Комедия",value:"47"},{label:"Космос",value:"83"},{label:"Магия",value:"85"},{label:"Махо-сёдзё",value:"48"},{label:"Машины",value:"90"},{label:"Меха",value:"49"},{label:"Мистика",value:"50"},{label:"Музыка",value:"80"},{label:"Научная фантастика",value:"51"},{label:"Омегаверс",value:"77"},{label:"Пародия",value:"86"},{label:"Повседневность",value:"52"},{label:"Полиция",value:"82"},{label:"Постапокалиптика",value:"53"},{label:"Приключения",value:"54"},{label:"Психология",value:"55"},{label:"Романтика",value:"56"},{label:"Самурайский боевик",value:"57"},{label:"Сверхъестественное",value:"58"},{label:"Сёдзё",value:"59"},{label:"Сёдзё-ай",value:"60"},{label:"Сёнэн",value:"61"},{label:"Сёнэн-ай",value:"62"},{label:"Спорт",value:"63"},{label:"Супер сила",value:"87"},{label:"Сэйнэн",value:"64"},{label:"Трагедия",value:"65"},{label:"Триллер",value:"66"},{label:"Ужасы",value:"67"},{label:"Фантастика",value:"68"},{label:"Фэнтези",value:"69"},{label:"Хентай",value:"84"},{label:"Школа",value:"70"},{label:"Эротика",value:"71"},{label:"Этти",value:"72"},{label:"Юри",value:"73"},{label:"Яой",value:"74"}],type:n.FilterTypes.ExcludableCheckboxGroup},tags:{label:"Теги",value:{include:[],exclude:[]},options:[{label:"Авантюристы",value:"328"},{label:"Антигерой",value:"175"},{label:"Бессмертные",value:"333"},{label:"Боги",value:"218"},{label:"Борьба за власть",value:"309"},{label:"Брат и сестра",value:"360"},{label:"Ведьма",value:"339"},{label:"Видеоигры",value:"204"},{label:"Виртуальная реальность",value:"214"},{label:"Владыка демонов",value:"349"},{label:"Военные",value:"198"},{label:"Воспоминания из другого мира",value:"310"},{label:"Выживание",value:"212"},{label:"ГГ женщина",value:"294"},{label:"ГГ имба",value:"292"},{label:"ГГ мужчина",value:"295"},{label:"ГГ не ояш",value:"325"},{label:"ГГ не человек",value:"331"},{label:"ГГ ояш",value:"326"},{label:"Главный герой бог",value:"324"},{label:"Глупый ГГ",value:"298"},{label:"Горничные",value:"171"},{label:"Гуро",value:"306"},{label:"Гяру",value:"197"},{label:"Демоны",value:"157"},{label:"Драконы",value:"313"},{label:"Древний мир",value:"317"},{label:"Зверолюди",value:"163"},{label:"Зомби",value:"155"},{label:"Исторические фигуры",value:"323"},{label:"Кулинария",value:"158"},{label:"Культивация",value:"161"},{label:"ЛГБТ",value:"344"},{label:"ЛитРПГ",value:"319"},{label:"Лоли",value:"206"},{label:"Магия",value:"170"},{label:"Машинный перевод",value:"345"},{label:"Медицина",value:"159"},{label:"Межгалактическая война",value:"330"},{label:"Монстр Девушки",value:"207"},{label:"Монстры",value:"208"},{label:"Мрачный мир",value:"316"},{label:"Музыка",value:"358"},{label:"Музыка",value:"209"},{label:"Ниндзя",value:"199"},{label:"Обратный Гарем",value:"210"},{label:"Офисные Работники",value:"200"},{label:"Пираты",value:"341"},{label:"Подземелья",value:"314"},{label:"Политика",value:"311"},{label:"Полиция",value:"201"},{label:"Преступники / Криминал",value:"205"},{label:"Призраки / Духи",value:"196"},{label:"Призыватели",value:"329"},{label:"Прыжки между мирами",value:"321"},{label:"Путешествие в другой мир",value:"318"},{label:"Путешествие во времени",value:"213"},{label:"Рабы",value:"355"},{label:"Ранги силы",value:"312"},{label:"Реинкарнация",value:"154"},{label:"Самураи",value:"202"},{label:"Скрытие личности",value:"315"},{label:"Средневековье",value:"174"},{label:"Традиционные игры",value:"203"},{label:"Умный ГГ",value:"303"},{label:"Характерный рост",value:"332"},{label:"Хикикомори",value:"167"},{label:"Эволюция",value:"322"},{label:"Элементы РПГ",value:"327"},{label:"Эльфы",value:"217"},{label:"Якудза",value:"165"}],type:n.FilterTypes.ExcludableCheckboxGroup},require_chapters:{label:"Только проекты с главами",value:!0,type:n.FilterTypes.Switch}}}return t.prototype.popularNovels=function(e,t){return l(this,arguments,void 0,(function(e,l){var t,n,i,o,s,v,c,b,d,p,h,f,g,m,y,_,k,x,S,w,j=l.showLatestNovels,N=l.filters;return a(this,(function(l){switch(l.label){case 0:return t=this.apiSite+"?site_id[0]=3&page="+e,t+="&sort_by="+(j?"last_chapter_at":(null===(o=null==N?void 0:N.sort_by)||void 0===o?void 0:o.value)||"rating_score"),t+="&sort_type="+((null===(s=null==N?void 0:N.sort_type)||void 0===s?void 0:s.value)||"desc"),(null===(v=null==N?void 0:N.require_chapters)||void 0===v?void 0:v.value)&&(t+="&chapters[min]=1"),(null===(b=null===(c=null==N?void 0:N.types)||void 0===c?void 0:c.value)||void 0===b?void 0:b.length)&&(t+="&types[]="+N.types.value.join("&types[]=")),(null===(p=null===(d=null==N?void 0:N.scanlateStatus)||void 0===d?void 0:d.value)||void 0===p?void 0:p.length)&&(t+="&scanlateStatus[]="+N.scanlateStatus.value.join("&scanlateStatus[]=")),(null===(f=null===(h=null==N?void 0:N.manga_status)||void 0===h?void 0:h.value)||void 0===f?void 0:f.length)&&(t+="&manga_status[]="+N.manga_status.value.join("&manga_status[]=")),(null==N?void 0:N.genres)&&((null===(m=null===(g=N.genres.value)||void 0===g?void 0:g.include)||void 0===m?void 0:m.length)&&(t+="&genres[]="+N.genres.value.include.join("&genres[]=")),(null===(_=null===(y=N.genres.value)||void 0===y?void 0:y.exclude)||void 0===_?void 0:_.length)&&(t+="&genres_exclude[]="+N.genres.value.exclude.join("&genres_exclude[]="))),(null==N?void 0:N.tags)&&((null===(x=null===(k=N.tags.value)||void 0===k?void 0:k.include)||void 0===x?void 0:x.length)&&(t+="&tags[]="+N.tags.value.include.join("&tags[]=")),(null===(w=null===(S=N.tags.value)||void 0===S?void 0:S.exclude)||void 0===w?void 0:w.length)&&(t+="&tags_exclude[]="+N.tags.value.exclude.join("&tags_exclude[]="))),[4,(0,r.fetchApi)(t,{headers:this.getHeaders()}).then((function(e){return e.json()}))];case 1:return n=l.sent(),i=[],n.data instanceof Array&&n.data.forEach((function(e){var l;return i.push({name:e.rus_name||e.eng_name||e.name,cover:(null===(l=e.cover)||void 0===l?void 0:l.default)||u.defaultCover,path:e.slug_url||e.id+"--"+e.slug})})),[2,i]}}))}))},t.prototype.parseNovel=function(t){return l(this,void 0,void 0,(function(){var l,n,o,c,b,p,h,f,g,m,y,_,k,x;return a(this,(function(a){switch(a.label){case 0:return[4,(0,r.fetchApi)("".concat(this.apiSite).concat(t,"?fields[]=summary&fields[]=genres&fields[]=tags&fields[]=teams&fields[]=authors&fields[]=status_id&fields[]=artists"),{headers:this.getHeaders()}).then((function(e){return e.json()}))];case 1:return l=a.sent().data,n={path:t,name:l.rus_name||l.name,cover:(null===(h=l.cover)||void 0===h?void 0:h.default)||u.defaultCover,summary:"string"==typeof l.summary?l.summary.trim():"doc"===(null===(f=l.summary)||void 0===f?void 0:f.type)?d(l.summary.content,[]):void 0},(null===(g=l.status)||void 0===g?void 0:g.id)&&(n.status=v[l.status.id]||i.NovelStatus.Unknown),(null===(m=l.authors)||void 0===m?void 0:m.length)&&(n.author=l.authors[0].name),(null===(y=l.artists)||void 0===y?void 0:y.length)&&(n.artist=l.artists[0].name),(o=[l.genres||[],l.tags||[]].flat().map((function(e){return null==e?void 0:e.name})).filter((function(e){return e}))).length&&(n.genres=o.join(", ")),c=(null===(_=l.teams)||void 0===_?void 0:_.reduce((function(e,l){var a,t=l.name,n=l.details;return e[String(null!==(a=null==n?void 0:n.branch_id)&&void 0!==a?a:"0")]=t,e}),{0:"Главная страница"}))||{0:"Главная страница"},[4,(0,r.fetchApi)("".concat(this.apiSite).concat(t,"/chapters"),{headers:this.getHeaders()}).then((function(e){return e.json()}))];case 2:return b=a.sent(),(null===(k=b.data)||void 0===k?void 0:k.length)&&(p=b.data.flatMap((function(e){return e.branches.map((function(l){var a=l.branch_id,n=l.created_at,u=String(null!=a?a:"0");return{name:"Том ".concat(e.volume," Глава ").concat(e.number).concat(e.name?" "+e.name.trim():""),path:"".concat(t,"/").concat(e.volume,"/").concat(e.number,"/").concat(u),releaseTime:n?(0,s.default)(n).format("LLL"):null,chapterNumber:e.index,page:c[u]||"Неизвестный"}}))})),p.length&&(1===new Set(p.map((function(e){return e.page}))).size?p=p.map((function(l){return e(e({},l),{page:void 0})})):(null===(x=l.teams)||void 0===x?void 0:x.length)>1&&p.sort((function(e,l){return e.page&&l.page&&e.page!==l.page?e.page.localeCompare(l.page):(e.chapterNumber||0)-(l.chapterNumber||0)})),n.chapters=p)),[2,n]}}))}))},t.prototype.parseChapter=function(e){return l(this,void 0,void 0,(function(){var l,t,n,u,i,o,s,v,c;return a(this,(function(a){switch(a.label){case 0:return l=e.split("/"),t=l[0],n=l[1],u=l[2],i=l[3],o="",t&&n&&u?[4,(0,r.fetchApi)(this.apiSite+t+"/chapter?"+(i?"branch_id="+i+"&":"")+"number="+u+"&volume="+n,{headers:this.getHeaders()}).then((function(e){return e.json()}))]:[3,2];case 1:s=a.sent(),v=null===(c=null==s?void 0:s.data)||void 0===c?void 0:c.content,o="object"==typeof v&&"doc"===(null==v?void 0:v.type)?d(v.content,s.data.attachments||[]):v||"",a.label=2;case 2:return[2,o]}}))}))},t.prototype.searchNovels=function(e){return l(this,void 0,void 0,(function(){var l,t,n;return a(this,(function(a){switch(a.label){case 0:return l=this.apiSite+"?site_id[0]=3&q="+e,[4,(0,r.fetchApi)(l,{headers:this.getHeaders()}).then((function(e){return e.json()}))];case 1:return t=a.sent(),n=[],t.data instanceof Array&&t.data.forEach((function(e){var l;return n.push({name:e.rus_name||e.eng_name||e.name,cover:(null===(l=e.cover)||void 0===l?void 0:l.default)||u.defaultCover,path:e.slug_url||e.id+"--"+e.slug})})),[2,n]}}))}))},t.prototype.getHeaders=function(){var l,a=new URL(this.apiSite);return e(e(e({},c),{Host:a.host}),(null===(l=this.user)||void 0===l?void 0:l.token)||{})},t}();function d(e,l,a){return void 0===a&&(a=""),e.forEach((function(e){var t,n;switch(e.type){case"hardBreak":a+="<br>";break;case"horizontalRule":a+="<hr>";break;case"image":if(null===(n=null===(t=e.attrs)||void 0===t?void 0:t.images)||void 0===n?void 0:n.length)e.attrs.images.forEach((function(e){var t=e.image,n=l.find((function(e){return e.name==t||e.id==t}));n&&(a+="<img src='".concat(n.url,"'>"))}));else if(e.attrs){var u=Object.entries(e.attrs).filter((function(e){return null==e?void 0:e[1]})).map((function(e){return"".concat(e[0],'="').concat(e[1],'"')}));a+="<img "+u.join("; ")+">"}break;case"paragraph":a+="<p>"+(e.content?d(e.content,l):"<br>")+"</p>";break;case"orderedList":a+="<ol>"+(e.content?d(e.content,l):"<br>")+"</ol>";break;case"listItem":a+="<li>"+(e.content?d(e.content,l):"<br>")+"</li>";break;case"blockquote":a+="<blockquote>"+(e.content?d(e.content,l):"<br>")+"</blockquote>";break;case"italic":a+="<i>"+(e.content?d(e.content,l):"<br>")+"</i>";break;case"bold":a+="<b>"+(e.content?d(e.content,l):"<br>")+"</b>";break;case"underline":a+="<u>"+(e.content?d(e.content,l):"<br>")+"</u>";break;case"heading":a+="<h2>"+(e.content?d(e.content,l):"<br>")+"</h2>";break;case"text":a+=e.text;break;default:a+=JSON.stringify(e,null,"\t")}})),a}exports.default=new b;
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+var filterInputs_1 = require("@libs/filterInputs");
+var defaultCover_1 = require("@libs/defaultCover");
+var fetch_1 = require("@libs/fetch");
+var novelStatus_1 = require("@libs/novelStatus");
+var storage_1 = require("@libs/storage");
+var dayjs_1 = __importDefault(require("dayjs"));
+var cheerio_1 = require("cheerio");
+var statusKey = {
+    1: novelStatus_1.NovelStatus.Ongoing,
+    2: novelStatus_1.NovelStatus.Completed,
+    3: novelStatus_1.NovelStatus.OnHiatus,
+    4: novelStatus_1.NovelStatus.Cancelled,
+};
+var BASE_HEADERS = {
+    Accept: 'application/json',
+    Referer: 'https://ranobelib.me',
+    Origin: 'https://ranobelib.me/',
+    'Site-Id': '3',
+    'client-time-zone': ((_b = (_a = Intl.DateTimeFormat()).resolvedOptions) === null || _b === void 0 ? void 0 : _b.call(_a).timeZone) || 'Europe/Moscow',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 YaBrowser/25.12.0.0 Safari/537.36',
+};
+var RLIB = /** @class */ (function () {
+    function RLIB() {
+        var _this = this;
+        this.id = 'RLIB';
+        this.name = 'RanobeLib';
+        this.site = 'https://ranobelib.me';
+        this.apiSite = 'https://api.cdnlibs.org/api/manga/';
+        this.version = '2.2.8';
+        this.icon = 'src/ru/ranobelib/icon.png';
+        this.webStorageUtilized = true;
+        this.imageRequestInit = {
+            headers: __assign(__assign({}, BASE_HEADERS), { Accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' }),
+        };
+        this.resolveUrl = function (path, isNovel) {
+            var _a;
+            var ui = ((_a = _this.user) === null || _a === void 0 ? void 0 : _a.ui) ? 'ui=' + _this.user.ui : '';
+            if (isNovel)
+                return _this.site + '/ru/book/' + path + (ui ? '?' + ui : '');
+            var _b = path.split('/'), slug = _b[0], volume = _b[1], number = _b[2], branch_id = _b[3];
+            var chapterPath = slug +
+                '/read/v' +
+                volume +
+                '/c' +
+                number +
+                (branch_id ? '?bid=' + branch_id : '');
+            return (_this.site +
+                '/ru/' +
+                chapterPath +
+                (ui ? (branch_id ? '&' : '?') + ui : ''));
+        };
+        this.getUser = function () {
+            var _a, _b;
+            var user = storage_1.storage.get('user');
+            if (user) {
+                return { token: { Authorization: 'Bearer ' + user.token }, ui: user.id };
+            }
+            var dataRaw = (_a = storage_1.localStorage.get()) === null || _a === void 0 ? void 0 : _a.auth;
+            if (!dataRaw) {
+                return {};
+            }
+            var data = JSON.parse(dataRaw);
+            if (!((_b = data === null || data === void 0 ? void 0 : data.token) === null || _b === void 0 ? void 0 : _b.access_token))
+                return;
+            storage_1.storage.set('user', {
+                id: data.auth.id,
+                token: data.token.access_token,
+            }, data.token.timestamp + data.token.expires_in);
+            return {
+                token: { Authorization: 'Bearer ' + data.token.access_token },
+                ui: data.auth.id,
+            };
+        };
+        this.user = this.getUser(); //To change the account, you need to restart the application
+        this.filters = {
+            sort_by: {
+                label: 'Сортировка',
+                value: 'rating_score',
+                options: [
+                    { label: 'По рейтингу', value: 'rate_avg' },
+                    { label: 'По популярности', value: 'rating_score' },
+                    { label: 'По просмотрам', value: 'views' },
+                    { label: 'Количеству глав', value: 'chap_count' },
+                    { label: 'Дате обновления', value: 'last_chapter_at' },
+                    { label: 'Дате добавления', value: 'created_at' },
+                    { label: 'По названию (A-Z)', value: 'name' },
+                    { label: 'По названию (А-Я)', value: 'rus_name' },
+                ],
+                type: filterInputs_1.FilterTypes.Picker,
+            },
+            sort_type: {
+                label: 'Порядок',
+                value: 'desc',
+                options: [
+                    { label: 'По убыванию', value: 'desc' },
+                    { label: 'По возрастанию', value: 'asc' },
+                ],
+                type: filterInputs_1.FilterTypes.Picker,
+            },
+            types: {
+                label: 'Тип',
+                value: [],
+                options: [
+                    { label: 'Япония', value: '10' },
+                    { label: 'Корея', value: '11' },
+                    { label: 'Китай', value: '12' },
+                    { label: 'Английский', value: '13' },
+                    { label: 'Авторский', value: '14' },
+                    { label: 'Фанфик', value: '15' },
+                ],
+                type: filterInputs_1.FilterTypes.CheckboxGroup,
+            },
+            scanlateStatus: {
+                label: 'Статус перевода',
+                value: [],
+                options: [
+                    { label: 'Продолжается', value: '1' },
+                    { label: 'Завершен', value: '2' },
+                    { label: 'Заморожен', value: '3' },
+                    { label: 'Заброшен', value: '4' },
+                ],
+                type: filterInputs_1.FilterTypes.CheckboxGroup,
+            },
+            manga_status: {
+                label: 'Статус тайтла',
+                value: [],
+                options: [
+                    { label: 'Онгоинг', value: '1' },
+                    { label: 'Завершён', value: '2' },
+                    { label: 'Анонс', value: '3' },
+                    { label: 'Приостановлен', value: '4' },
+                    { label: 'Выпуск прекращён', value: '5' },
+                ],
+                type: filterInputs_1.FilterTypes.CheckboxGroup,
+            },
+            genres: {
+                label: 'Жанры',
+                value: { include: [], exclude: [] },
+                options: [
+                    { label: 'Арт', value: '32' },
+                    { label: 'Безумие', value: '91' },
+                    { label: 'Боевик', value: '34' },
+                    { label: 'Боевые искусства', value: '35' },
+                    { label: 'Вампиры', value: '36' },
+                    { label: 'Военное', value: '89' },
+                    { label: 'Гарем', value: '37' },
+                    { label: 'Гендерная интрига', value: '38' },
+                    { label: 'Героическое фэнтези', value: '39' },
+                    { label: 'Демоны', value: '81' },
+                    { label: 'Детектив', value: '40' },
+                    { label: 'Детское', value: '88' },
+                    { label: 'Дзёсэй', value: '41' },
+                    { label: 'Драма', value: '43' },
+                    { label: 'Игра', value: '44' },
+                    { label: 'Исекай', value: '79' },
+                    { label: 'История', value: '45' },
+                    { label: 'Киберпанк', value: '46' },
+                    { label: 'Кодомо', value: '76' },
+                    { label: 'Комедия', value: '47' },
+                    { label: 'Космос', value: '83' },
+                    { label: 'Магия', value: '85' },
+                    { label: 'Махо-сёдзё', value: '48' },
+                    { label: 'Машины', value: '90' },
+                    { label: 'Меха', value: '49' },
+                    { label: 'Мистика', value: '50' },
+                    { label: 'Музыка', value: '80' },
+                    { label: 'Научная фантастика', value: '51' },
+                    { label: 'Омегаверс', value: '77' },
+                    { label: 'Пародия', value: '86' },
+                    { label: 'Повседневность', value: '52' },
+                    { label: 'Полиция', value: '82' },
+                    { label: 'Постапокалиптика', value: '53' },
+                    { label: 'Приключения', value: '54' },
+                    { label: 'Психология', value: '55' },
+                    { label: 'Романтика', value: '56' },
+                    { label: 'Самурайский боевик', value: '57' },
+                    { label: 'Сверхъестественное', value: '58' },
+                    { label: 'Сёдзё', value: '59' },
+                    { label: 'Сёдзё-ай', value: '60' },
+                    { label: 'Сёнэн', value: '61' },
+                    { label: 'Сёнэн-ай', value: '62' },
+                    { label: 'Спорт', value: '63' },
+                    { label: 'Супер сила', value: '87' },
+                    { label: 'Сэйнэн', value: '64' },
+                    { label: 'Трагедия', value: '65' },
+                    { label: 'Триллер', value: '66' },
+                    { label: 'Ужасы', value: '67' },
+                    { label: 'Фантастика', value: '68' },
+                    { label: 'Фэнтези', value: '69' },
+                    { label: 'Хентай', value: '84' },
+                    { label: 'Школа', value: '70' },
+                    { label: 'Эротика', value: '71' },
+                    { label: 'Этти', value: '72' },
+                    { label: 'Юри', value: '73' },
+                    { label: 'Яой', value: '74' },
+                ],
+                type: filterInputs_1.FilterTypes.ExcludableCheckboxGroup,
+            },
+            tags: {
+                label: 'Теги',
+                value: { include: [], exclude: [] },
+                options: [
+                    { label: 'Авантюристы', value: '328' },
+                    { label: 'Антигерой', value: '175' },
+                    { label: 'Бессмертные', value: '333' },
+                    { label: 'Боги', value: '218' },
+                    { label: 'Борьба за власть', value: '309' },
+                    { label: 'Брат и сестра', value: '360' },
+                    { label: 'Ведьма', value: '339' },
+                    { label: 'Видеоигры', value: '204' },
+                    { label: 'Виртуальная реальность', value: '214' },
+                    { label: 'Владыка демонов', value: '349' },
+                    { label: 'Военные', value: '198' },
+                    { label: 'Воспоминания из другого мира', value: '310' },
+                    { label: 'Выживание', value: '212' },
+                    { label: 'ГГ женщина', value: '294' },
+                    { label: 'ГГ имба', value: '292' },
+                    { label: 'ГГ мужчина', value: '295' },
+                    { label: 'ГГ не ояш', value: '325' },
+                    { label: 'ГГ не человек', value: '331' },
+                    { label: 'ГГ ояш', value: '326' },
+                    { label: 'Главный герой бог', value: '324' },
+                    { label: 'Глупый ГГ', value: '298' },
+                    { label: 'Горничные', value: '171' },
+                    { label: 'Гуро', value: '306' },
+                    { label: 'Гяру', value: '197' },
+                    { label: 'Демоны', value: '157' },
+                    { label: 'Драконы', value: '313' },
+                    { label: 'Древний мир', value: '317' },
+                    { label: 'Зверолюди', value: '163' },
+                    { label: 'Зомби', value: '155' },
+                    { label: 'Исторические фигуры', value: '323' },
+                    { label: 'Кулинария', value: '158' },
+                    { label: 'Культивация', value: '161' },
+                    { label: 'ЛГБТ', value: '344' },
+                    { label: 'ЛитРПГ', value: '319' },
+                    { label: 'Лоли', value: '206' },
+                    { label: 'Магия', value: '170' },
+                    { label: 'Машинный перевод', value: '345' },
+                    { label: 'Медицина', value: '159' },
+                    { label: 'Межгалактическая война', value: '330' },
+                    { label: 'Монстр Девушки', value: '207' },
+                    { label: 'Монстры', value: '208' },
+                    { label: 'Мрачный мир', value: '316' },
+                    { label: 'Музыка', value: '358' },
+                    { label: 'Музыка', value: '209' },
+                    { label: 'Ниндзя', value: '199' },
+                    { label: 'Обратный Гарем', value: '210' },
+                    { label: 'Офисные Работники', value: '200' },
+                    { label: 'Пираты', value: '341' },
+                    { label: 'Подземелья', value: '314' },
+                    { label: 'Политика', value: '311' },
+                    { label: 'Полиция', value: '201' },
+                    { label: 'Преступники / Криминал', value: '205' },
+                    { label: 'Призраки / Духи', value: '196' },
+                    { label: 'Призыватели', value: '329' },
+                    { label: 'Прыжки между мирами', value: '321' },
+                    { label: 'Путешествие в другой мир', value: '318' },
+                    { label: 'Путешествие во времени', value: '213' },
+                    { label: 'Рабы', value: '355' },
+                    { label: 'Ранги силы', value: '312' },
+                    { label: 'Реинкарнация', value: '154' },
+                    { label: 'Самураи', value: '202' },
+                    { label: 'Скрытие личности', value: '315' },
+                    { label: 'Средневековье', value: '174' },
+                    { label: 'Традиционные игры', value: '203' },
+                    { label: 'Умный ГГ', value: '303' },
+                    { label: 'Характерный рост', value: '332' },
+                    { label: 'Хикикомори', value: '167' },
+                    { label: 'Эволюция', value: '322' },
+                    { label: 'Элементы РПГ', value: '327' },
+                    { label: 'Эльфы', value: '217' },
+                    { label: 'Якудза', value: '165' },
+                ],
+                type: filterInputs_1.FilterTypes.ExcludableCheckboxGroup,
+            },
+            require_chapters: {
+                label: 'Только проекты с главами',
+                value: true,
+                type: filterInputs_1.FilterTypes.Switch,
+            },
+        };
+    }
+    RLIB.prototype.popularNovels = function (pageNo_1, _a) {
+        return __awaiter(this, arguments, void 0, function (pageNo, _b) {
+            var url, result, novels;
+            var _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u;
+            var showLatestNovels = _b.showLatestNovels, filters = _b.filters;
+            return __generator(this, function (_v) {
+                switch (_v.label) {
+                    case 0:
+                        url = this.apiSite + '?site_id[0]=3&page=' + pageNo;
+                        url +=
+                            '&sort_by=' +
+                                (showLatestNovels
+                                    ? 'last_chapter_at'
+                                    : ((_c = filters === null || filters === void 0 ? void 0 : filters.sort_by) === null || _c === void 0 ? void 0 : _c.value) || 'rating_score');
+                        url += '&sort_type=' + (((_d = filters === null || filters === void 0 ? void 0 : filters.sort_type) === null || _d === void 0 ? void 0 : _d.value) || 'desc');
+                        if ((_e = filters === null || filters === void 0 ? void 0 : filters.require_chapters) === null || _e === void 0 ? void 0 : _e.value) {
+                            url += '&chapters[min]=1';
+                        }
+                        if ((_g = (_f = filters === null || filters === void 0 ? void 0 : filters.types) === null || _f === void 0 ? void 0 : _f.value) === null || _g === void 0 ? void 0 : _g.length) {
+                            url += '&types[]=' + filters.types.value.join('&types[]=');
+                        }
+                        if ((_j = (_h = filters === null || filters === void 0 ? void 0 : filters.scanlateStatus) === null || _h === void 0 ? void 0 : _h.value) === null || _j === void 0 ? void 0 : _j.length) {
+                            url +=
+                                '&scanlateStatus[]=' +
+                                    filters.scanlateStatus.value.join('&scanlateStatus[]=');
+                        }
+                        if ((_l = (_k = filters === null || filters === void 0 ? void 0 : filters.manga_status) === null || _k === void 0 ? void 0 : _k.value) === null || _l === void 0 ? void 0 : _l.length) {
+                            url +=
+                                '&manga_status[]=' +
+                                    filters.manga_status.value.join('&manga_status[]=');
+                        }
+                        if (filters === null || filters === void 0 ? void 0 : filters.genres) {
+                            if ((_o = (_m = filters.genres.value) === null || _m === void 0 ? void 0 : _m.include) === null || _o === void 0 ? void 0 : _o.length) {
+                                url += '&genres[]=' + filters.genres.value.include.join('&genres[]=');
+                            }
+                            if ((_q = (_p = filters.genres.value) === null || _p === void 0 ? void 0 : _p.exclude) === null || _q === void 0 ? void 0 : _q.length) {
+                                url +=
+                                    '&genres_exclude[]=' +
+                                        filters.genres.value.exclude.join('&genres_exclude[]=');
+                            }
+                        }
+                        if (filters === null || filters === void 0 ? void 0 : filters.tags) {
+                            if ((_s = (_r = filters.tags.value) === null || _r === void 0 ? void 0 : _r.include) === null || _s === void 0 ? void 0 : _s.length) {
+                                url += '&tags[]=' + filters.tags.value.include.join('&tags[]=');
+                            }
+                            if ((_u = (_t = filters.tags.value) === null || _t === void 0 ? void 0 : _t.exclude) === null || _u === void 0 ? void 0 : _u.length) {
+                                url +=
+                                    '&tags_exclude[]=' +
+                                        filters.tags.value.exclude.join('&tags_exclude[]=');
+                            }
+                        }
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url, {
+                                headers: this.getHeaders(),
+                            }).then(function (res) { return res.json(); })];
+                    case 1:
+                        result = _v.sent();
+                        novels = [];
+                        if (result.data instanceof Array) {
+                            result.data.forEach(function (novel) {
+                                var _a;
+                                return novels.push({
+                                    name: novel.rus_name || novel.eng_name || novel.name,
+                                    cover: ((_a = novel.cover) === null || _a === void 0 ? void 0 : _a.default) || defaultCover_1.defaultCover,
+                                    path: novel.slug_url || novel.id + '--' + novel.slug,
+                                });
+                            });
+                        }
+                        return [2 /*return*/, novels];
+                }
+            });
+        });
+    };
+    RLIB.prototype.parseNovel = function (novelPath) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, novel, genres, branch_name, chaptersJSON, chapters;
+            var _a, _b, _c, _d, _e, _f, _g;
+            return __generator(this, function (_h) {
+                switch (_h.label) {
+                    case 0: return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.apiSite).concat(novelPath, "?fields[]=summary&fields[]=genres&fields[]=tags&fields[]=teams&fields[]=authors&fields[]=status_id&fields[]=artists"), { headers: this.getHeaders() }).then(function (res) { return res.json(); })];
+                    case 1:
+                        data = (_h.sent()).data;
+                        novel = {
+                            path: novelPath,
+                            name: data.rus_name || data.name,
+                            cover: ((_a = data.cover) === null || _a === void 0 ? void 0 : _a.default) || defaultCover_1.defaultCover,
+                            summary: htmlToText(typeof data.summary === 'string'
+                                ? data.summary
+                                : ((_b = data.summary) === null || _b === void 0 ? void 0 : _b.type) === 'doc'
+                                    ? jsonToHtml(data.summary.content, [])
+                                    : ''),
+                        };
+                        if ((_c = data.status) === null || _c === void 0 ? void 0 : _c.id) {
+                            novel.status = statusKey[data.status.id] || novelStatus_1.NovelStatus.Unknown;
+                        }
+                        if ((_d = data.authors) === null || _d === void 0 ? void 0 : _d.length) {
+                            novel.author = data.authors[0].name;
+                        }
+                        if ((_e = data.artists) === null || _e === void 0 ? void 0 : _e.length) {
+                            novel.artist = data.artists[0].name;
+                        }
+                        genres = [data.genres || [], data.tags || []]
+                            .flat()
+                            .map(function (genres) { return genres === null || genres === void 0 ? void 0 : genres.name; })
+                            .filter(function (genres) { return genres; });
+                        if (genres.length) {
+                            novel.genres = genres.join(', ');
+                        }
+                        branch_name = ((_f = data.teams) === null || _f === void 0 ? void 0 : _f.reduce(function (acc, _a) {
+                            var _b;
+                            var name = _a.name, details = _a.details;
+                            acc[String((_b = details === null || details === void 0 ? void 0 : details.branch_id) !== null && _b !== void 0 ? _b : '0')] = name;
+                            return acc;
+                        }, { '0': 'Главная страница' })) || { '0': 'Главная страница' };
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.apiSite).concat(novelPath, "/chapters"), { headers: this.getHeaders() }).then(function (res) { return res.json(); })];
+                    case 2:
+                        chaptersJSON = _h.sent();
+                        if ((_g = chaptersJSON.data) === null || _g === void 0 ? void 0 : _g.length) {
+                            chapters = chaptersJSON.data.flatMap(function (chapter) {
+                                return chapter.branches.map(function (_a) {
+                                    var branch_id = _a.branch_id, created_at = _a.created_at;
+                                    var bId = String(branch_id !== null && branch_id !== void 0 ? branch_id : '0');
+                                    return {
+                                        name: "\u0422\u043E\u043C ".concat(chapter.volume, " \u0413\u043B\u0430\u0432\u0430 ").concat(chapter.number).concat(chapter.name ? ' ' + chapter.name.trim() : ''),
+                                        path: "".concat(novelPath, "/").concat(chapter.volume, "/").concat(chapter.number, "/").concat(bId),
+                                        releaseTime: created_at ? (0, dayjs_1.default)(created_at).format('LLL') : null,
+                                        chapterNumber: chapter.index,
+                                        scanlator: branch_name[bId] || 'Неизвестный',
+                                    };
+                                });
+                            });
+                            if (chapters.length) {
+                                novel.chapters = chapters;
+                            }
+                        }
+                        return [2 /*return*/, novel];
+                }
+            });
+        });
+    };
+    RLIB.prototype.parseChapter = function (chapterPath) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, slug, volume, number, branch_id, url, res, result, content, chapterText;
+            var _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _a = chapterPath.split('/'), slug = _a[0], volume = _a[1], number = _a[2], branch_id = _a[3];
+                        if (!slug || !volume || !number) {
+                            throw new Error("Invalid chapter path: ".concat(chapterPath));
+                        }
+                        url = this.apiSite +
+                            slug +
+                            '/chapter?' +
+                            (branch_id ? 'branch_id=' + branch_id + '&' : '') +
+                            'number=' +
+                            number +
+                            '&volume=' +
+                            volume;
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url, { headers: this.getHeaders() })];
+                    case 1:
+                        res = _c.sent();
+                        if (!res.ok) {
+                            throw new Error("Could not load chapter (HTTP ".concat(res.status, ")"));
+                        }
+                        return [4 /*yield*/, res.json()];
+                    case 2:
+                        result = _c.sent();
+                        content = (_b = result === null || result === void 0 ? void 0 : result.data) === null || _b === void 0 ? void 0 : _b.content;
+                        chapterText = typeof content === 'object' && (content === null || content === void 0 ? void 0 : content.type) === 'doc'
+                            ? jsonToHtml(content.content, result.data.attachments || [])
+                            : content || '';
+                        if (!chapterText) {
+                            throw new Error('Could not load chapter');
+                        }
+                        return [2 /*return*/, chapterText];
+                }
+            });
+        });
+    };
+    RLIB.prototype.searchNovels = function (searchTerm) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, result, novels;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = this.apiSite + '?site_id[0]=3&q=' + encodeURIComponent(searchTerm);
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url, {
+                                headers: this.getHeaders(),
+                            }).then(function (res) { return res.json(); })];
+                    case 1:
+                        result = _a.sent();
+                        novels = [];
+                        if (result.data instanceof Array) {
+                            result.data.forEach(function (novel) {
+                                var _a;
+                                return novels.push({
+                                    name: novel.rus_name || novel.eng_name || novel.name,
+                                    cover: ((_a = novel.cover) === null || _a === void 0 ? void 0 : _a.default) || defaultCover_1.defaultCover,
+                                    path: novel.slug_url || novel.id + '--' + novel.slug,
+                                });
+                            });
+                        }
+                        return [2 /*return*/, novels];
+                }
+            });
+        });
+    };
+    RLIB.prototype.getHeaders = function () {
+        var _a;
+        var apiUrl = new URL(this.apiSite);
+        return __assign(__assign(__assign({}, BASE_HEADERS), { Host: apiUrl.host }), (((_a = this.user) === null || _a === void 0 ? void 0 : _a.token) || {}));
+    };
+    return RLIB;
+}());
+exports.default = new RLIB();
+// the app shows summaries as plain text
+function htmlToText(html) {
+    var $ = (0, cheerio_1.load)(html);
+    $('br').replaceWith('\n');
+    $('p, div, li, h1, h2, h3, h4, h5, h6, blockquote').after('\n\n');
+    return ($.root()
+        .text()
+        .replace(/[ \t]*\n[ \t]*/g, '\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim() || undefined);
+}
+function jsonToHtml(json, images, html) {
+    if (html === void 0) { html = ''; }
+    json.forEach(function (element) {
+        var _a, _b;
+        switch (element.type) {
+            case 'hardBreak':
+                html += '<br>';
+                break;
+            case 'horizontalRule':
+                html += '<hr>';
+                break;
+            case 'image':
+                if ((_b = (_a = element.attrs) === null || _a === void 0 ? void 0 : _a.images) === null || _b === void 0 ? void 0 : _b.length) {
+                    element.attrs.images.forEach(function (_a) {
+                        var image = _a.image;
+                        var file = images.find(function (f) { return f.name == image || f.id == image; });
+                        if (file) {
+                            html += "<img src='".concat(file.url, "'>");
+                        }
+                    });
+                }
+                else if (element.attrs) {
+                    var attrs = Object.entries(element.attrs)
+                        .filter(function (attr) { return attr === null || attr === void 0 ? void 0 : attr[1]; })
+                        .map(function (attr) { return "".concat(attr[0], "=\"").concat(attr[1], "\""); });
+                    html += '<img ' + attrs.join('; ') + '>';
+                }
+                break;
+            case 'paragraph':
+                html +=
+                    '<p>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</p>';
+                break;
+            case 'orderedList':
+                html +=
+                    '<ol>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</ol>';
+                break;
+            case 'listItem':
+                html +=
+                    '<li>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</li>';
+                break;
+            case 'blockquote':
+                html +=
+                    '<blockquote>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</blockquote>';
+                break;
+            case 'italic':
+                html +=
+                    '<i>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</i>';
+                break;
+            case 'bold':
+                html +=
+                    '<b>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</b>';
+                break;
+            case 'underline':
+                html +=
+                    '<u>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</u>';
+                break;
+            case 'heading':
+                html +=
+                    '<h2>' +
+                        (element.content ? jsonToHtml(element.content, images) : '<br>') +
+                        '</h2>';
+                break;
+            case 'text':
+                // literal text like "Ранг <S>" must not turn into tags
+                html += (element.text || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                break;
+            default:
+                html += JSON.stringify(element, null, '\t'); //maybe I missed something.
+                break;
+        }
+    });
+    return html;
+}
