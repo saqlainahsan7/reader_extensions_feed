@@ -1,7 +1,7 @@
-{
-  "versionCode": 104,
-  "versionName": "1.13.2",
-  "info": "Rebuilt on upstream TachiyomiSY 1.13.2. Carries only the custom update flow, app identity, crash diagnostics and downloader finalize guards; the storage/SAF rework was dropped.",
-  "releaseLink": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/tachiyomisy",
-  "downloadLink": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk"
+﻿{
+    "versionCode":  105,
+    "versionName":  "1.13.2",
+    "info":  "Synced with upstream TachiyomiSY (Metro DI). Keeps the custom update flow, app identity, crash diagnostics and downloader finalize guards.",
+    "releaseLink":  "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/tachiyomisy",
+    "downloadLink":  "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk"
 }
