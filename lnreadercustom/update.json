@@ -1,4 +1,4 @@
-﻿{
+{
     "version":  "2.1.4",
     "versionCode":  4196359,
     "changelog":  "Synced with upstream LNReader 2.1.4. Clears Cloudflare JavaScript challenges in a hidden background WebView and retries, and sends requests through that WebView for sites that still refuse.",

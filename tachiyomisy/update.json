@@ -1,4 +1,4 @@
-﻿{
+{
     "versionCode":  105,
     "versionName":  "1.13.2",
     "info":  "Synced with upstream TachiyomiSY (Metro DI). Keeps the custom update flow, app identity, crash diagnostics and downloader finalize guards.",
