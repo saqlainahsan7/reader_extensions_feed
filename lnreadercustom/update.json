@@ -1,8 +1,8 @@
-{
-  "version": "2.1.2",
-  "versionCode": 4196358,
-  "changelog": "Fixed a crash when opening the Updates tab.",
-  "downloadUrl": "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk",
-  "releaseUrl": "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/lnreadercustom",
-  "publishedAt": "2026-08-19T01:40:35.7938202Z"
+﻿{
+    "version":  "2.1.4",
+    "versionCode":  4196359,
+    "changelog":  "Synced with upstream LNReader 2.1.4. Clears Cloudflare JavaScript challenges in a hidden background WebView and retries, and sends requests through that WebView for sites that still refuse.",
+    "downloadUrl":  "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/lnreadercustom/LNReader-Custom-release.apk",
+    "releaseUrl":  "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/lnreadercustom",
+    "publishedAt":  "2026-11-02T04:37:36.1598595Z"
 }
