@@ -1,7 +1,7 @@
 {
-    "versionCode":  105,
+    "versionCode":  106,
     "versionName":  "1.13.2",
-    "info":  "Synced with upstream TachiyomiSY (Metro DI). Keeps the custom update flow, app identity, crash diagnostics and downloader finalize guards.",
+    "info":  "Page previews for the nhentai extension work again: the built-in nhentai support now recognises the updated extension by its source ids.",
     "releaseLink":  "https://github.com/saqlainahsan7/reader_extensions_feed/tree/main/tachiyomisy",
     "downloadLink":  "https://raw.githubusercontent.com/saqlainahsan7/reader_extensions_feed/main/tachiyomisy/TachiyomiSY-Custom-standard-universal-release.apk"
 }
